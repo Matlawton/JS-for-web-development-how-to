@@ -1,0 +1,256 @@
+Why do you need a Cookie?
+Cookies are used to remember information about the user profile(such as username). It basically involves two steps,
+
+When a user visits a web page, user profile can be stored in a cookie.
+
+Next time the user visits the page, the cookie remembers user profile.
+
+What are the options in a cookie?
+There are few below options available for a cookie,
+
+By default, the cookie is deleted when the browser is closed but you can change this behavior by setting expiry date (in UTC time).
+
+document.cookie = "username=John expires=Sat, 8 Jun 2019 12:00:00 UTC";
+By default, the cookie belongs to a current page. But you can tell the browser what path the cookie belongs to using a path parameter.
+
+document.cookie = "username=John path=/services";
+How do you delete a cookie?
+You can delete a cookie by setting the expiry date as a passed date. You don't need to specify a cookie value in this case. For example, you can delete a username cookie in the current page as below.
+
+document.cookie = "username=; expires=Fri, 07 Jun 2019 00:00:00 UTC; path=/;";
+Note: You should define the cookie path option to ensure that you delete the right cookie. Some browsers doesn't allow to delete a cookie unless you specify a path parameter.
+
+What is the main difference between local Storage and session Storage?
+LocalStorage is same as SessionStorage but it persists the data even when the browser is closed and reopened(i.e it has no expiration time) whereas in sessionStorage data gets cleared when the page session ends.
+
+How do you access web storage?
+The Window object implements the WindowLocalStorage and WindowSessionStorage objects which has localStorage(window.localStorage) and sessionStorage(window.sessionStorage) properties respectively. These properties create an instance of the Storage object, through which data items can be set, retrieved and removed for a specific domain and storage type (session or local). For example, you can read and write on local storage objects as below
+
+localStorage.setItem('logo', document.getElementById('logo').value);
+localStorage.getItem('logo');
+What are the methods available on session storage?
+The session storage provided methods for reading, writing and clearing the session data
+
+// Save data to sessionStorage
+sessionStorage.setItem('key', 'value');
+ 
+// Get saved data from sessionStorage
+let data = sessionStorage.getItem('key');
+ 
+// Remove saved data from sessionStorage
+sessionStorage.removeItem('key');
+ 
+// Remove all saved data from sessionStorage
+sessionStorage.clear();
+What is a storage event and its event handler?
+The StorageEvent is an event that fires when a storage area has been changed in the context of another document. Whereas onstorage property is an EventHandler for processing storage events. The syntax would be as below
+
+ window.onstorage = functionRef;
+Let's take the example usage of onstorage event handler which logs the storage key and it's values
+
+window.onstorage = function(e) {
+  console.log('The ' + e.key +
+    ' key has been changed from ' + e.oldValue +
+    ' to ' + e.newValue + '.');
+};
+Why do you need web storage?
+Web storage is more secure, and large amounts of data can be stored locally, without affecting website performance. Also, the information is never transferred to the server. Hence this is recommended approach than Cookies.
+
+How do you check web storage browser support?
+You need to check browser support for localStorage and sessionStorage before using web storage,
+
+if (typeof(Storage) !== "undefined") {
+  // Code for localStorage/sessionStorage.
+} else {
+  // Sorry! No Web Storage support..
+}
+How do you check web workers browser support?
+You need to check browser support for web workers before using it
+
+if (typeof(Worker) !== "undefined") {
+  // code for Web worker support.
+} else {
+  // Sorry! No Web Worker support..
+}
+Give an example of web worker?
+You need to follow below steps to start using web workers for counting example
+
+Create a Web Worker File: You need to write a script to increment the count value. Let's name it as counter.js
+
+let i = 0;
+ 
+function timedCount() {
+  i = i + 1;
+  postMessage(i);
+  setTimeout("timedCount()",500);
+}
+ 
+timedCount();
+Here postMessage() method is used to post a message back to the HTML page 2. Create a Web Worker Object: You can create a web worker object by checking for browser support. Let's name this file as web_worker_example.js
+
+if (typeof(w) == "undefined") {
+  w = new Worker("counter.js");
+}
+and we can receive messages from web worker
+
+w.onmessage = function(event){
+  document.getElementById("message").innerHTML = event.data;
+};
+Terminate a Web Worker: Web workers will continue to listen for messages (even after the external script is finished) until it is terminated. You can use terminate() method to terminate listening the messages.
+
+w.terminate();
+Reuse the Web Worker: If you set the worker variable to undefined you can reuse the code
+
+w = undefined;
+What are the restrictions of web workers on DOM?
+WebWorkers don't have access to below javascript objects since they are defined in an external files
+
+Window object
+
+Document object
+
+Parent object
+
+1. What is the difference between undefined and not defined in JavaScript?
+
+In JavaScript, if you try to use a variable that doesn't exist and has not been declared, then JavaScript will throw an error var name is not defined and script will stop executing. However, if you use typeof undeclared_variable, then it will return undefined.
+
+Before getting further into this, let's first understand the difference between declaration and definition.
+
+Let's say var x is a declaration because you have not defined what value it holds yet, but you have declared its existence and the need for memory allocation.
+
+> var x; // declaring x
+> console.log(x); //output: undefined 
+Here var x = 1 is both a declaration and definition (also we can say we are doing an initialisation). In the example above, the declaration and assignment of value happen inline for variable x. In JavaScript, every variable or function declaration you bring to the top of its current scope is called hoisting.
+
+The assignment happens in order, so when we try to access a variable that is declared but not defined yet, we will get the result undefined.
+
+var x; // Declaration
+if(typeof x === 'undefined') // Will return true
+If a variable that is neither declared nor defined, when we try to reference such a variable we'd get the result not defined.
+
+> console.log(y);  // Output: ReferenceError: y is not defined
+Question 2
+What will be the output of the code below?
+var y = 1;
+  if (function f(){}) {
+    y += typeof f;
+  }
+  console.log(y);
+The output would be 1undefined. The if condition statement evaluates using eval, so eval(function f(){}) returns function f(){} (which is true). Therefore, inside the if statement, executing typeof f returns undefined because the if statement code executes at run time, and the statement inside the if condition is evaluated during run time.
+
+var k = 1;
+  if (1) {
+    eval(function foo(){});
+    k += typeof foo;
+  }
+  console.log(k); 
+The code above will also output 1undefined.
+
+var k = 1;
+  if (1) {
+    function foo(){};
+    k += typeof foo;
+  }
+  console.log(k); // output 1function
+Question 3
+What is the drawback of creating true private methods in JavaScript?
+One of the drawbacks of creating true private methods in JavaScript is that they are very memory-inefficient, as a new copy of the method would be created for each instance.
+
+var Employee = function (name, company, salary) {
+    this.name = name || "";       //Public attribute default value is null
+    this.company = company || ""; //Public attribute default value is null
+    this.salary = salary || 5000; //Public attribute default value is null
+ 
+    // Private method
+    var increaseSalary = function () {
+        this.salary = this.salary + 1000;
+    };
+ 
+    // Public method
+    this.dispalyIncreasedSalary = function() {
+        increaseSlary();
+        console.log(this.salary);
+    };
+};
+ 
+// Create Employee class object
+var emp1 = new Employee("John","Pluto",3000);
+// Create Employee class object
+var emp2 = new Employee("Merry","Pluto",2000);
+// Create Employee class object
+var emp3 = new Employee("Ren","Pluto",2500);
+Here each instance variable emp1, emp2, emp3 has its own copy of the increaseSalary private method.
+
+So, as a recommendation, don’t use private methods unless it’s necessary.
+
+
+
+
+
+Question 4
+What is a “closure” in JavaScript? Provide an example
+A closure is a function defined inside another function (called the parent function), and has access to variables that are declared and defined in the parent function scope.
+
+The closure has access to variables in three scopes:
+
+Variables declared in their own scope
+
+Variables declared in a parent function scope
+
+Variables declared in the global namespace
+
+var globalVar = "abc"; 
+ 
+// Parent self invoking function 
+(function outerFunction (outerArg) { // begin of scope outerFunction
+    // Variable declared in outerFunction function scope 
+    var outerFuncVar = 'x';    
+    // Closure self-invoking function 
+    (function innerFunction (innerArg) { // begin of scope innerFunction
+        // variable declared in innerFunction function scope
+        var innerFuncVar = "y"; 
+        console.log(          
+            "outerArg = " + outerArg + "\n" +
+            "outerFuncVar = " + outerFuncVar + "\n" +
+            "innerArg = " + innerArg + "\n" +
+            "innerFuncVar = " + innerFuncVar + "\n" +
+            "globalVar = " + globalVar);
+ 
+    }// end of scope innerFunction)(5); // Pass 5 as parameter 
+}// end of scope outerFunction )(7); // Pass 7 as parameter 
+innerFunction is closure that is defined inside outerFunction and has access to all variables declared and defined in the outerFunction scope. In addition, the function defined inside another function as a closure will have access to variables declared in the global namespace.
+
+Thus, the output of the code above would be:
+
+outerArg = 7
+outerFuncVar = x
+innerArg = 5
+innerFuncVar = y
+globalVar = abc
+Question 5
+Write a mul function which will produce the following outputs when invoked:
+console.log(mul(2)(3)(4)); // output : 24 
+console.log(mul(4)(3)(4)); // output : 48
+Below is the answer followed by an explanation to how it works:
+
+function mul (x) {
+    return function (y) { // anonymous function 
+        return function (z) { // anonymous function 
+            return x * y * z; 
+        };
+    };
+}
+Here the mul function accepts the first argument and returns an anonymous function, which takes the second parameter and returns another anonymous function that will take the third parameter and return the multiplication of the arguments that have been passed.
+
+In JavaScript, a function defined inside another one has access to the outer function's variables. Therefore, a function is a first-class object that can be returned by other functions as well and be passed as an argument in another function.
+
+A function is an instance of the Object type
+
+A function can have properties and has a link back to its constructor method
+
+A function can be stored as a variable
+
+A function can be pass as a parameter to another function
+
+A function can be returned from another function

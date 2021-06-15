@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Encapsulation </title>
+</head>
+
+<body>
+	<h1>Encapsulation  Example</h1>
+	<script>
+	class Employee{
+		setEmployeeDetails(name,age,dis){
+			this.name=name;
+			this.age=age;
+			this.dis=dis;
+		}
+		getEmpid(){
+			return this.age;
+		}
+		getEmpname(){
+			return this.name;
+		}
+		getdis(){
+			return this.dis;
+		}
+		
+	}
+	let emp=new Employee();
+		emp.setEmployeeDetails("john",25,"IT")
+		document.write(emp.getEmpid());
+		document.write(emp.getEmpname());
+		document.write(emp.getdis());
+	</script><br>
+	<script>
+	class student{
+		constructor(){
+			var name;
+			var marks;
+		}
+		getName(){
+			return this.name;
+			
+		}
+		setname(name){
+			this.name=name;
+		}
+		getmarks(){
+			return this.marks;
+		}
+		setmarks(marks){
+			if(marks<0||marks>100){
+				alert("invald marks");
+			}
+			else{
+				this.marks=marks;
+			}
+		}
+	}
+		var std=new student();
+		std.setname("BOB");
+		std.setmarks("111");
+		document.write(std.getName()+ "" +std.getmarks());
+	
+	
+	</script>
+
+	<p>
+		What is Encapsulation?<p>
+In object-oriented programming, encapsulation is the inclusion within a program object of all the resources need for the object to function - basically, the methods and the data. The object is said to "publish its interfaces." Other objects adhere to these interfaces to use the object without having to be concerned with how the object accomplishes it. The idea is "don't tell me how you do it; just do it." An object can be thought of as a self-contained atom. The object interface consists of public methods and instantiated data.
+<p>
+In telecommunication, encapsulation is the inclusion of one data structure within another structure so that the first data structure is hidden for the time being. For example, a TCP/IP-formatted data packet can be encapsulated within an ATM frame (another kind of transmitted data unit). Within the context of transmitting and receiving the ATM frame, the encapsulated packet is simply a stream of bits beween the ATM data that describes the transfer.
+<p></p>
+Encapsulation is one of the fundamentals of OOP (object-oriented programming). It refers to the bundling of data with the methods that operate on that data. Encapsulation is used to hide the values or state of a structured data object inside a class, preventing unauthorized parties’ direct access to them. Publicly accessible methods are generally provided in the class (so-called getters and setters) to access the values, and other client classes call these methods to retrieve and modify the values within the object.
+<p></p>
+Encapsulation is a good idea for several reasons:
+the functionality is defined in one place and not in multiple places.
+<p></p>
+it is defined in a logical place – the place where the data is kept.
+<p></p>
+data inside our object is not modified unexpectedly by external code in a completely different part of our program.
+<p>
+when we use a method, we only need to know what result the method will produce – we don’t need to know details about the object’s internals in order to use it. We could switch to using another object which is completely different on the inside, and not have to change any code because both objects have the same interface.
+
+
+	</p>
+</body>
+</html>

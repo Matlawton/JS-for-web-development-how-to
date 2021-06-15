@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Function Expression</title>
+</head>
+
+<body>
+	<script>
+	
+	var sums=function(num1,num2){
+		
+		var total=num1+num2;
+		return total;
+		
+	};
+	document.write(sums(5,80)+"<br>");
+		var sum=sums(20,60);
+		document.write(sum);
+	//JavaScript Function Theory
+//What is function?
+//In programming, a named section of a program that performs a specific task is called a function. In this sense, a function is a type of procedure or routine. Some programming languages make a distinction between a function, which returns a value, and a procedure, which performs some operation but does not return a value.
+
+//Functions and procedures are the basic building blocks of programs. They are small sections of code that are used to perform a particular task, and they are used for two main reasons.
+
+//The first reason is that they can be used to avoid repetition of commands within the program. If you have operations that are performed in various different parts of the program, then it makes sense to remove the repeated code and create a separate function or procedure that can be called from those places instead. Not only will this reduce the size of your program, but it will make the code easier to maintain, and it will remove the possibility that some of the code segments are updated, but not others.
+
+//What Is Functional Programming?
+//If you have a background in mathematics, you have a head start on functional programming. This is because the functional programming paradigm treats computing like mathematical functions. If you don’t have a mathematical background, this could leave you feeling confused.
+
+//Basically, functional programming treats functions and data as immutable. You pass data into a function, and it generally returns that data transformed or some other type of data. In functional programming, the function should never change the original data or program state.
+
+//There is a similarity to the Unix philosophy that each program should do one thing well. A function shouldn’t touch various parts of your program. Instead, it should take its input and give you an output.
+
+//Ideally, functions should be pure whenever possible in functional programming. This means that given the same input, the function’s output will always remain the same.
+
+//Functional vs. Object-Oriented Programming
+//This is a dramatic departure from something like object-oriented programming. In object-oriented programming, you often have a base object with various methods dedicated to changing either data or state that are part of that object. A method may even alter data or state if not explicitly stated.
+
+//In practical programs, sometimes this makes sense. That said, it can make programs harder to maintain, as it’s not always clear what is altering state or data. Functional programming was originally used in academic environments, but can also help to prevent these sorts of problems.
+
+
+
+//Functions
+//Functions "Encapsulate" a task (they combine many instructions into a single line of code). Most programming languages provide many built in functions that would otherwise require many steps to accomplish, for example computing the square root of a number. In general, we don't care how a function does what it does, only that it "does it"!
+
+//When a function is "called" the program "leaves" the current section of code and begins to execute the first line inside the function. Thus the function "flow of control" is:
+//The program comes to a line of code containing a "function call".
+
+//The program enters the function (starts at the first line in the function code).
+
+//All instructions inside of the function are executed from top to bottom.
+
+//The program leaves the function and goes back to where it started from.
+
+//Any data computed and RETURNED by the function is used in place of the function in the original line of code.
+
+//Why we need functions in Javascript
+//a) To improve the readability of code.
+
+//b) Improves the reusability of the code, same function can be used in any program rather than writing the same code from scratch.
+
+//c) Debugging of the code would be easier if you use functions, as errors are easy to be traced.
+
+//d) Reduces the size of the code, duplicate set of statements are replaced by function calls.
+
+//
+	</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Inheritance in javascript</title>
+</head>
+
+<body>
+	<script>
+	class car{
+		setname(name){
+			this.name=name;
+		}
+		startEngine(){
+			document.write("Engine Started for"+this.name);
+		}
+		stopEngine(){
+			document.write("Engine Stoped For " +this.name);
+		}
+	}
+	class Toyota extends car{
+		topSpeed(speed){
+			document.write("top Speed for"+this.name+ "is " +speed);
+		}
+		startEngine(){
+			document.write("Engine Started for child class");
+		}
+	}
+		
+	let mycar=new Toyota();
+		mycar.setname("fortuner");
+		mycar.startEngine();
+		mycar.stopEngine();
+		mycar.topSpeed(250);
+	
+	</script>
+	<script>
+	class bike{
+		constructor(){
+			this.company="honda";
+		}
+	}
+		class Vehicle extends bike{
+			constructor(name,price){
+				super();
+				this.name=name;
+				this.price=price;
+			}
+		}
+		var V=new Vehicle("Honda Activa","800");
+		document.write(V.company+""+V.name+""+V.price);
+		
+	
+	
+	
+	
+	
+	
+	</script>
+</body>
+</html>
